@@ -1,0 +1,10 @@
+---
+# Docker Configuration
+
+- name: Download docker install shell
+  get_url:
+    url: https://releases.rancher.com/install-docker/1.12.sh
+    dest: /root/docker.sh
+
+- name: Install docker
+  command: sh /root/docker.sh

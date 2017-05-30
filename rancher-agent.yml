@@ -1,0 +1,11 @@
+---
+- name: Provision Rancher Agent
+  hosts: rancheragent
+  remote_user: root
+  vars:
+    rancher_server: "{{ hostvars['rancherserver']['ansible_ssh_host'] }}"
+    agent_version: 1.2.2
+  roles:
+    - common
+    - docker
+    - rancher-agent

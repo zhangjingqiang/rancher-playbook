@@ -1,0 +1,33 @@
+---
+- name: Update repositories cache
+  apt: update_cache=yes
+
+- name: Install build-essential
+  apt: name=build-essential state=present
+
+- name: Set system time zone
+  copy: content='Asia/Tokyo' dest=/etc/timezone backup=yes
+  changed_when: False
+
+- name: Install language pack
+  apt:
+    name: language-pack-ja
+    state: present
+
+- name: Set system locale
+  shell: update-locale LANG=ja_JP.UTF-8
+  changed_when: False
+
+- name: Get pip install file
+  get_url:
+    url: https://bootstrap.pypa.io/get-pip.py
+    dest: /root
+
+- name: Install pip
+  command: python /root/get-pip.py
+
+- name: Install python libraries
+  pip: name={{ item }}
+  with_items:
+    - docker-py
+    - httplib2

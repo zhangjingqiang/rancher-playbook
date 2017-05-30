@@ -1,0 +1,10 @@
+---
+# Private Registry Configuration
+
+- name: Run private registry image
+  docker:
+    name: private_registry
+    image: registry:2
+    state: reloaded
+    ports:
+    - "5000:5000"

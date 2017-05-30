@@ -1,0 +1,3 @@
+setup-rancher.retry
+.vagrant
+Vagrantfile*

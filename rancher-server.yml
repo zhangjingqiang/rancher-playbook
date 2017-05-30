@@ -1,0 +1,26 @@
+---
+- name: Provision Rancher Server
+  hosts: rancherserver
+  remote_user: root
+  vars:
+    rancher_server: "{{ hostvars['rancherserver']['ansible_ssh_host'] }}"
+    server_version: 1.5.10
+    create_api_key_body:
+      accountId: "1a1"
+      description: "provisioner"
+      name: "provisioner"
+      publicValue: "{{ api_user }}"
+      secretValue: "{{ api_pass }}"
+      _hack: null
+    enable_local_auth_body:
+      accessMode: "restricted"
+      enabled: true
+      name: "{{ admin_user }}"
+      username: "{{ admin_user }}"
+      password: "{{ admin_pass }}"
+      _hack: null
+  roles:
+    - common
+    - docker
+    - registry
+    - rancher-server

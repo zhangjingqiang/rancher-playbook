@@ -1,0 +1,8 @@
+---
+- include: centos.yml
+  static: yes
+  when: ansible_os_family == 'RedHat'
+
+- include: ubuntu.yml
+  static: yes
+  when: ansible_os_family == 'Debian'

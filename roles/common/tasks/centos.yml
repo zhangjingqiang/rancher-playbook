@@ -1,0 +1,25 @@
+---
+- name: Disable SELinux
+  selinux: state=disabled
+
+- name: Set system time zone
+  shell: timedatectl set-timezone "Asia/Tokyo"
+  changed_when: False
+
+- name: Set system locale
+  shell: localectl set-locale LANG="ja_JP.UTF-8"
+  changed_when: False
+
+- name: Get pip install file
+  get_url:
+    url: https://bootstrap.pypa.io/get-pip.py
+    dest: /root
+
+- name: Install pip
+  command: python /root/get-pip.py
+
+- name: Install python libraries
+  pip: name={{ item }}
+  with_items:
+    - docker-py
+    - httplib2
