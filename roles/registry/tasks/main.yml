@@ -6,5 +6,7 @@
     name: private_registry
     image: registry:2
     state: reloaded
+    restart_policy: always
+    detach: True
     ports:
     - "5000:5000"
