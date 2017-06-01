@@ -1,0 +1,12 @@
+---
+- name: Provision Authentication
+  hosts: rancher
+  vars:
+  - username: root
+
+  tasks:
+  - name: Add authorized key
+    authorized_key:
+      user: "{{ username }}"
+      state: present
+      key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"

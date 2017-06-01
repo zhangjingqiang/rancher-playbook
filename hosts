@@ -1,6 +1,10 @@
-[rancherserver]
-rancherserver ansible_ssh_port=$PORT ansible_ssh_host=$IP_ADDRESS ansible_ssh_user=root
+[rancher_server_group]
+rancherserver ansible_ssh_port=$PORT ansible_ssh_host=$IP_ADDRESS ansible_ssh_user=root ansible_ssh_pass=$PASSWORD
 
-[rancheragent]
-rancheragent1 ansible_ssh_port=$PORT ansible_ssh_host=$IP_ADDRESS ansible_ssh_user=root
-rancheragent2 ansible_ssh_port=$PORT ansible_ssh_host=$IP_ADDRESS ansible_ssh_user=root
+[rancher_agent_group]
+rancheragent1 ansible_ssh_port=$PORT ansible_ssh_host=$IP_ADDRESS ansible_ssh_user=root ansible_ssh_pass=$PASSWORD
+rancheragent2 ansible_ssh_port=$PORT ansible_ssh_host=$IP_ADDRESS ansible_ssh_user=root ansible_ssh_pass=$PASSWORD
+
+[rancher:children]
+rancher_server_group
+rancher_agent_group
