@@ -11,3 +11,7 @@ It can been used for CentOS and Ubuntu.
 ```
 $ ansible-playbook -i hosts setup-rancher.yml
 ```
+
+## Requirement
+
+Ansible version >= 2.3.0
