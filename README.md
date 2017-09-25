@@ -15,3 +15,7 @@ $ ansible-playbook -i hosts setup-rancher.yml
 ## Requirement
 
 Ansible version >= 2.3.0
+
+## License
+
+MIT
